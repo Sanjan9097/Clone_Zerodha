@@ -18,6 +18,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(express.static('../frontend/build'));
+
+app.get('/',(req,res)=>{
+  res.sendFile('../frontend/build/index.html');
+})
+
 // app.get("/addHoldings", async (req, res) => {
 //   let tempHoldings = [
 //     {
@@ -212,6 +218,7 @@ app.get("/allHoldings", async (req, res) => {
 
 
 app.listen(PORT,()=>{
+  console.log(PORT);
     console.log("App started");
     mongoose.connect(uri);
 });
